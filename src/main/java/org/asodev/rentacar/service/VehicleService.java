@@ -4,6 +4,7 @@ package org.asodev.rentacar.service;
 import org.asodev.rentacar.dto.Vehicle.AddVehicleDto;
 import org.asodev.rentacar.dto.Vehicle.VehicleDto;
 import org.asodev.rentacar.model.Vehicle;
+import org.asodev.rentacar.model.VehicleStatus;
 import org.asodev.rentacar.repository.VehicleRepository;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +48,15 @@ public class VehicleService {
         vehicleRepository.deleteById(id);
     }
 
+    public boolean isAvailableForRent(UUID vehicleID){
+        Vehicle vehicle = vehicleRepository.findById(vehicleID).orElseThrow(()-> new RuntimeException("Vehicle not found"));
+        return vehicle.getStatus()== VehicleStatus.AVAILABLE;
+    }
+
+    public void updateVehicleStatus(UUID vehicleID, VehicleStatus status){
+        Vehicle vehicle = vehicleRepository.findById(vehicleID).orElseThrow(()->new RuntimeException("Vehicle not found"));
+        vehicle.setStatus(status);
+        vehicleRepository.save(vehicle);
+    }
 
 }

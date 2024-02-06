@@ -3,6 +3,7 @@ package org.asodev.rentacar.model;
 import jakarta.persistence.*;
 
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "Customers")
@@ -10,7 +11,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "CustomerID",columnDefinition = "BINARY(16)")
-    private Long customerID;
+    private UUID customerID;
 
     @Column(name = "FirstName")
     private String firstName;
@@ -30,7 +31,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(Long customerID, String firstNAme, String lastName, String email, String phoneNumber, String address) {
+    public Customer(UUID customerID, String firstNAme, String lastName, String email, String phoneNumber, String address) {
         this.customerID = customerID;
         this.firstName = firstNAme;
         this.lastName = lastName;
@@ -39,11 +40,11 @@ public class Customer {
         Address = address;
     }
 
-    public Long getCustomerID() {
+    public UUID getCustomerID() {
         return customerID;
     }
 
-    public void setCustomerID(Long customerID) {
+    public void setCustomerID(UUID customerID) {
         this.customerID = customerID;
     }
 

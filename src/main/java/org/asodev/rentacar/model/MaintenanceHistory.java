@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "MaintenanceHistory")
@@ -12,7 +13,7 @@ public class MaintenanceHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "MaintenanceID", columnDefinition = "BINARY(16)")
-    private Long maintenanceID;
+    private UUID maintenanceID;
 
     @ManyToOne
     @JoinColumn(name = "VehicleID", nullable = false)
@@ -31,11 +32,10 @@ public class MaintenanceHistory {
     @Column(name = "MaintenanceCost")
     private Double maintenanceCost;
 
-    public MaintenanceHistory(RentalWorker rentalWorker) {
-        this.rentalWorker = rentalWorker;
+    public MaintenanceHistory() {
     }
 
-    public MaintenanceHistory(Long maintenanceID, Vehicle vehicle, RentalWorker rentalWorker, LocalDateTime maintenanceDate, String description, Double maintenanceCost) {
+    public MaintenanceHistory(UUID maintenanceID, Vehicle vehicle, RentalWorker rentalWorker, LocalDateTime maintenanceDate, String description, Double maintenanceCost) {
         this.maintenanceID = maintenanceID;
         this.vehicle = vehicle;
         this.rentalWorker = rentalWorker;
@@ -44,11 +44,11 @@ public class MaintenanceHistory {
         this.maintenanceCost = maintenanceCost;
     }
 
-    public Long getMaintenanceID() {
+    public UUID getMaintenanceID() {
         return maintenanceID;
     }
 
-    public void setMaintenanceID(Long maintenanceID) {
+    public void setMaintenanceID(UUID maintenanceID) {
         this.maintenanceID = maintenanceID;
     }
 

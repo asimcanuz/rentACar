@@ -3,6 +3,7 @@ package org.asodev.rentacar.model;
 import jakarta.persistence.*;
 
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "Roles")
@@ -10,7 +11,7 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "RoleID",columnDefinition = "BINARY(16)")
-    private Long roleID;
+    private UUID roleID;
 
     @Column(name = "name",nullable = false,unique = true)
     private String name;
@@ -18,16 +19,16 @@ public class Role {
     public Role() {
     }
 
-    public Role(Long roleID, String name) {
+    public Role(UUID roleID, String name) {
         this.roleID = roleID;
         this.name = name;
     }
 
-    public Long getRoleID() {
+    public UUID getRoleID() {
         return roleID;
     }
 
-    public void setRoleID(Long roleID) {
+    public void setRoleID(UUID roleID) {
         this.roleID = roleID;
     }
 

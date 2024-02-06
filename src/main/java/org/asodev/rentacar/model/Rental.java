@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "Rentals")
@@ -13,7 +14,7 @@ public class Rental {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "RentalID",columnDefinition = "BINARY(16)")
-    private Long rentalID;
+    private UUID rentalID;
 
     @ManyToOne
     @JoinColumn(name = "CustomerID")
@@ -35,7 +36,7 @@ public class Rental {
     public Rental() {
     }
 
-    public Rental(Long rentalID, Customer customer, Vehicle vehicle, LocalDateTime rentalDate, LocalDateTime returnDate, Double totalAmount) {
+    public Rental(UUID rentalID, Customer customer, Vehicle vehicle, LocalDateTime rentalDate, LocalDateTime returnDate, Double totalAmount) {
         this.rentalID = rentalID;
         this.customer = customer;
         this.vehicle = vehicle;
@@ -44,11 +45,11 @@ public class Rental {
         this.totalAmount = totalAmount;
     }
 
-    public Long getRentalID() {
+    public UUID getRentalID() {
         return rentalID;
     }
 
-    public void setRentalID(Long rentalID) {
+    public void setRentalID(UUID rentalID) {
         this.rentalID = rentalID;
     }
 
