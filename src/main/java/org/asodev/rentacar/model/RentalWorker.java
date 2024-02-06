@@ -1,0 +1,14 @@
+package org.asodev.rentacar.model;
+
+import jakarta.persistence.*;
+
+// * TODO : Çalışan tablosu fieldlarını belirle
+@Entity
+@Table(name = "RentalWorkers")
+public class RentalWorker {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "RentalWorkerID",columnDefinition = "BINARY(16)")
+    private Long rentalWorkerID;
+
+}
